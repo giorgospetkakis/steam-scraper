@@ -47,4 +47,4 @@ Temporary Items
 .apdisk
 
 # Quick Data Analysis Files
-*.xls*
+xls/
