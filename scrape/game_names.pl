@@ -9,7 +9,7 @@ use warnings;
 use JSON;
 
 my %games;
-my $output_filename = "game_names";
+my $output_filename = $_[0];
 
 getGameNames();
 if (%games) {

@@ -9,7 +9,7 @@ use warnings;
 use JSON;
 use Data::Dumper;
 
-my $filename = "ids";
+my $filename = $_[0];
 
 # Open ids file
 open (my $IN, '<:encoding(UTF-8)', $filename) or die "Could not open file '$filename'";
@@ -25,7 +25,7 @@ while (my $line = <$IN>) {
 # Get the apps from the API
     getUserApps($line, $apps);
 
-# Write to new file
+# Write to file
     if ($apps) {
         my ($app_info) = encode_json $apps;
         `echo $app_info >> $filename\_games`;
@@ -36,6 +36,7 @@ while (my $line = <$IN>) {
 sub getUserApps {
     my $api_response = `curl -s "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=3D31F24513C0F5242FE5B3917816A745\&steamid=$_[0]\&format=json&include_played_free_games"`;
     
+    # Get appid in $1 and playtime in $2
     while ($api_response =~ m/\"appid\": ([0-9]+),\s*\"playtime_forever\": ([0-9]+)/) {
         $_[1]{$1} = $2;
         $api_response = $';

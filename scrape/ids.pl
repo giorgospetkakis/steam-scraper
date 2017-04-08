@@ -7,7 +7,7 @@
 use strict;
 use warnings;
 
-$main::filename = "ids.txt";
+$main::filename = $_[0];
 
 # Start with most recent UID entry
 my @queue = (`tail -n 1 "$main::filename"`);
@@ -26,11 +26,10 @@ sub getUserIDs {
 
     # Add all UIDS to the queue
     foreach my $UID (@api_response) {
+        # Check is UID is unique to the set (surpisingly fast with large amounts of data)
         if (not `grep "$UID" $main::filename`) {
             # Make sure they have reviews
-            # if(`curl -s steamcommunity.com/profiles/$UID/recommended | cat | wc -m` > 50) {
                 `echo "$UID" >> $main::filename`;
-            # }
             push @queue, $UID;
         }
     }

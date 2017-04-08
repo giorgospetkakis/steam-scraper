@@ -1,14 +1,14 @@
 #!/usr/bin/perl
 
 # Steam Game Analysis Tools
-# A script to interpret data from the Steam API
+# A script to combine data from the Steam API
 # Written by Giorgos Petkakis, 2017
 
 use strict;
 use warnings;
 
-my $filename = "ids_games";
-my $names_ref_filename = "game_names";
+my $filename = @_[0];
+my $names_ref_filename = @_[1];
 my $delim = "\$\$";
 my %gameFrequencies;
 my %playerPerGame;
