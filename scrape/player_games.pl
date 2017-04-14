@@ -31,6 +31,7 @@ while (my $line = <$IN>) {
         `echo $app_info >> $filename\_games`;
     }
 }
+close $OUT;
 
 # Query API for player games
 sub getUserApps {
