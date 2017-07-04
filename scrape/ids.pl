@@ -22,7 +22,7 @@ while(@queue) {
 
 # Get Friend List UIDS
 sub getUserIDs {
-    my @api_response = split(/\n/, `curl -s "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=3D31F24513C0F5242FE5B3917816A745\&steamid=$_[0]" | grep -Eoh "[0-9]{17}"`);
+    my @api_response = split(/\n/, `curl -s "http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key="KEY"\&steamid=$_[0]" | grep -Eoh "[0-9]{17}"`);
 
     # Add all UIDS to the queue
     foreach my $UID (@api_response) {
