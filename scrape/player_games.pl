@@ -35,7 +35,7 @@ close $OUT;
 
 # Query API for player games
 sub getUserApps {
-    my $api_response = `curl -s "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=3D31F24513C0F5242FE5B3917816A745\&steamid=$_[0]\&format=json&include_played_free_games"`;
+    my $api_response = `curl -s "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key="KEY"\&steamid=$_[0]\&format=json&include_played_free_games"`;
     
     # Get appid in $1 and playtime in $2
     while ($api_response =~ m/\"appid\": ([0-9]+),\s*\"playtime_forever\": ([0-9]+)/) {
